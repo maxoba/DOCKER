@@ -1,0 +1,32 @@
+# Use an official Ubuntu base image
+FROM ubuntu:20.04
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Update and install dependencies
+RUN apt-get update && \
+    apt-get install -y \
+    curl \
+    gnupg \
+    ca-certificates \
+    lsb-release \
+    software-properties-common
+
+# Install additional packages if needed (e.g., Python, Node.js, etc.)
+# RUN apt-get install -y <package-name>
+
+# Copy the application files into the container
+COPY . .
+
+# Install any application-specific dependencies (e.g., npm install for Node.js)
+# RUN npm install
+
+# Expose the port the application will run on
+EXPOSE 8080
+
+# Command to run your application (modify as needed)
+CMD ["./your-application"]
+
+# Example of entrypoint (if required)
+# ENTRYPOINT ["./entrypoint.sh"]
